@@ -71,13 +71,15 @@ Make sure you have installed:
 The project can be ran as such:
 
 ```sh
-usage: python main.py [-h] [-v] [-g GRID] [-i IMAGE]
+usage: python main.py [-h] [-v] [-c CSV] [-i IMAGE] [-g GRAPH] [-s SVG]
 
 Parses a Grid in CSV format containing positional information of buildings and roads, generating a graph in .dot format
 
 options:
   -h, --help              show this help message and exit
   -v, --verbose           Enable verbose output
-  -g GRID, --grid GRID    Filename of the Grid CSV file.
+  -c CSV, --csv CSV       Filename of the Grid CSV file.
   -i IMAGE, --image IMAGE Filename of the image file to be generated based on the Grid
+  -g GRAPH, --graph GRAPH Filename of the graph file to be generated based on the Grid
+  -s SVG, --svg SVG       Filename of the SVG file to be generated based on the .dot graphviz format
 ```
