@@ -2,14 +2,14 @@
 
 ## Description
 
-Parses a Grid in CSV format containing positional information of buildings (uniquely identified with integer IDs) and roads. Generates Graph using Graphviz that displays information on building connections to roads, connection between roads, changes in road widths, and road ends, which is then later converted to SVG.
+Parses a Grid in CSV format containing positional information of buildings (uniquely identified with integer IDs) and roads. Generates Graph using Graphviz that displays information on building connections to roads, connection between roads, changes in road widths, and road ends, which is then later converted to PDF.
 
 ## Features
 
 - Parse the Grid CSV file and print it to the console.
 - Generate and display PNG image from Grid CSV file, for better visualization.
 - Generate Graph using Graphviz format
-- Render Graph into SVG and display it
+- Render Graph into PDF and display it
 
 ## Input Files Definition
 
