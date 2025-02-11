@@ -7,7 +7,7 @@ class Building:
         self.warehouse = warehouse
 
     def is_valid(self):
-        """Checks if the building is contiguous"""
+        """Checks if the building is contiguous."""
         if not self.points:
             return False
         
