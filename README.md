@@ -94,4 +94,7 @@ options:
   -i IMAGE, --image IMAGE              Filename of the image file to be generated based on the Grid
   -w WAREHOUSE, --warehouse WAREHOUSE  Filename of the TXT file that contains IDs of buildings which are a warehouse
   -g GRAPH, --graph GRAPH              Filename of the graph .dot file to be generated based on the Grid
+
+Command with example inputs/output:
+python main.py -v -c grid.csv -w warehouse.txt -g grid.dot
 ```
