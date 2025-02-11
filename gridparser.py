@@ -64,7 +64,30 @@ class GridParser:
                                 queue.append((nx, ny))
                                 segment.append((nx, ny))
             
-            self.roads.append(Road(road_id, segment, road_width-1))
+            #Fix the road width based on orientation of the road (north-south or east-west)
+            min_r = len(grid)
+            max_r = 0
+            min_c = len(grid[0])
+            max_c = 0
+            for (r, c) in segment:
+                if r < min_r:
+                    min_r = r
+                if r > max_r:
+                    max_r = r
+                if c < min_c:
+                    min_c = c
+                if c > max_c:
+                    max_c = c
+            row_length=max_r-min_r+1
+            column_length=max_c-min_c+1
+            print(row_length)
+            print(column_length)
+            print(road_width-1)
+            print("$$$$")
+            if row_length <= road_width-1:
+                self.roads.append(Road(road_id, segment, row_length))
+            else:
+                self.roads.append(Road(road_id, segment, column_length))
         
         # Identify and label roads
         for r in range(rows):

@@ -64,7 +64,7 @@ def main():
             grid.display()
             print("Roads:")
             for road in gridparser.roads:
-                print(f"Road {road.id}: {road.points}")
+                print(f"Road {road.id}: {road.points},  width: {road.width}")
             for i in sorted(gridparser.buildings.keys()):
                 print(f"Building {gridparser.buildings[i].id}: {gridparser.buildings[i].points}, warehouse: {gridparser.buildings[i].warehouse}")
 
