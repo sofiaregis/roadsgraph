@@ -83,7 +83,7 @@ Make sure you have installed:
 The project can be ran as such:
 
 ```sh
-usage: python main.py [-h] [-v] [-c CSV] [-i IMAGE] [-w WAREHOUSE] [-g GRAPH] [-s SVG]
+usage: python main.py [-h] [-v] [-c CSV] [-i IMAGE] [-w WAREHOUSE] [-g GRAPH]
 
 Parses a Grid in CSV format containing positional information of buildings and roads, generating a graph in .dot format
 
@@ -94,5 +94,4 @@ options:
   -i IMAGE, --image IMAGE              Filename of the image file to be generated based on the Grid
   -w WAREHOUSE, --warehouse WAREHOUSE  Filename of the TXT file that contains IDs of buildings which are a warehouse
   -g GRAPH, --graph GRAPH              Filename of the graph .dot file to be generated based on the Grid
-  -s SVG, --svg SVG                    Filename of the SVG file to be generated based on the .dot graphviz format
 ```

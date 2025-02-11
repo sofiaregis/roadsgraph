@@ -1,8 +1,12 @@
 class Road:
-    def __init__(self, id, points, width):
+    def __init__(self, id, points, width, orientation):
         self.id = id
         self.points = set(points)
         self.width = width
+        #0 when north-south and 1 when west-east
+        self.orientation = orientation
+        self.connects_to_building = []
+        self.connects_to_road = []
 
     def is_connected(self, other):
         """Checks if two roads (or a road and a building) are connected."""

@@ -1,4 +1,3 @@
-import graphviz
 from building import Building
 from road import Road
 from collections import deque
@@ -80,14 +79,10 @@ class GridParser:
                     max_c = c
             row_length=max_r-min_r+1
             column_length=max_c-min_c+1
-            print(row_length)
-            print(column_length)
-            print(road_width-1)
-            print("$$$$")
-            if row_length <= road_width-1:
-                self.roads.append(Road(road_id, segment, row_length))
+            if row_length < road_width-1:
+                self.roads.append(Road(road_id, segment, row_length, 1))
             else:
-                self.roads.append(Road(road_id, segment, column_length))
+                self.roads.append(Road(road_id, segment, column_length, 0))
         
         # Identify and label roads
         for r in range(rows):

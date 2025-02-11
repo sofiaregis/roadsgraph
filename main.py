@@ -1,10 +1,12 @@
 import argparse, sys
 from grid import Grid
 from gridparser import GridParser
+from graphgenerator import GraphGenerator
 
 def main():
     grid = Grid()
     gridparser = GridParser()
+    graphgenerator = GraphGenerator()
 
     parser = argparse.ArgumentParser(
         description="Parses a Grid in CSV format containing positional information of buildings and roads, generating a graph in .dot format"
@@ -34,11 +36,6 @@ def main():
         "-g", "--graph", type=str,
         help="Filename of the graph .dot file to be generated based on the Grid"
     )
-
-    parser.add_argument(
-        "-s", "--svg", type=str,
-        help="Filename of the SVG file to be generated based on the .dot graphviz format"
-    )
     
     args = parser.parse_args()
 
@@ -59,18 +56,34 @@ def main():
     if args.csv is not None:
         grid.load_from_csv(args.csv)
         gridparser.parse_buildings(grid.grid, grid.warehouse)
+        for i in sorted(gridparser.buildings.keys()):
+            if not gridparser.buildings[i].is_valid():
+                print("ERROR: At least one building is not valid (not contiguous), exiting...", file=sys.stderr)
+                return -1
         gridparser.parse_roads(grid.grid)
         if args.verbose:
             grid.display()
             print("Roads:")
             for road in gridparser.roads:
-                print(f"Road {road.id}: {road.points},  width: {road.width}")
+                print(f"Road {road.id}: {road.points},  width: {road.width}, orientation: {'N-S' if road.orientation == 0 else 'W-E'}")
             for i in sorted(gridparser.buildings.keys()):
                 print(f"Building {gridparser.buildings[i].id}: {gridparser.buildings[i].points}, warehouse: {gridparser.buildings[i].warehouse}")
+        
+        if args.image is not None:
+            grid.save_grid_as_image(args.verbose, args.image)
 
+        if args.graph is not None:
+            graphgenerator.create_building_nodes(gridparser.buildings)
+            graphgenerator.connect_roads_to_buildings(gridparser.buildings, gridparser.roads)
+            #graphgenerator.connect_roads_to_roads(gridparser.roads)
+            graphgenerator.create_road_nodes(gridparser.roads)
+            graphgenerator.connect_road_nodes(gridparser.roads, gridparser.buildings)
 
-    if args.image is not None:
-        grid.save_grid_as_image(args.verbose, args.image)
+            if args.verbose:
+                print(graphgenerator.graph.source)
+                graphgenerator.graph.render(args.graph, view=True)
+            else:
+                graphgenerator.graph.render(args.graph)
 
 
 if __name__ == "__main__":
