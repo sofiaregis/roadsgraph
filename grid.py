@@ -4,6 +4,7 @@ from PIL import Image
 class Grid:
     def __init__(self, rows=0, cols=0):
         self.grid = [['.' for _ in range(cols)] for _ in range(rows)]
+        self.warehouses = []
     
     def load_from_csv(self, file_path):
         """Reads a CSV file and populates the grid."""

@@ -11,8 +11,9 @@ Parses a Grid in CSV format containing positional information of buildings (uniq
 - Generate Graph using Graphviz format
 - Render Graph into SVG and display it
 
-## Grid CSV Definition
+## Input Files Definition
 
+### Grid CSV
 Each position in the Grid is identified by it's position in a CSV file. The position can contain an integer that represents a building (and it's ID), a letter R that represents a road, or a dot (.) that represents an empty space.
 
 Example CSV Grid file:
@@ -39,6 +40,17 @@ Example CSV Grid file:
 .,.,.,.,.,.,.,4,4,4,.
 .,.,.,.,.,.,.,4,4,4,.
 .,.,.,.,.,.,.,4,4,4,.
+```
+
+### Warehouses TXT
+
+Text file that defines which buildings are warehouses by their ID. If no Warehouses file is provided then no building will be considered a warehouse.
+
+Example Warehouses file:
+
+```txt
+2
+4
 ```
 
 ## Installation
@@ -71,15 +83,16 @@ Make sure you have installed:
 The project can be ran as such:
 
 ```sh
-usage: python main.py [-h] [-v] [-c CSV] [-i IMAGE] [-g GRAPH] [-s SVG]
+usage: python main.py [-h] [-v] [-c CSV] [-i IMAGE] [-w WAREHOUSE] [-g GRAPH] [-s SVG]
 
 Parses a Grid in CSV format containing positional information of buildings and roads, generating a graph in .dot format
 
 options:
-  -h, --help              show this help message and exit
-  -v, --verbose           Enable verbose output
-  -c CSV, --csv CSV       Filename of the Grid CSV file.
-  -i IMAGE, --image IMAGE Filename of the image file to be generated based on the Grid
-  -g GRAPH, --graph GRAPH Filename of the graph file to be generated based on the Grid
-  -s SVG, --svg SVG       Filename of the SVG file to be generated based on the .dot graphviz format
+  -h, --help                           show this help message and exit
+  -v, --verbose                        Enable verbose output
+  -c CSV, --csv CSV                    Filename of the Grid CSV file.
+  -i IMAGE, --image IMAGE              Filename of the image file to be generated based on the Grid
+  -w WAREHOUSE, --warehouse WAREHOUSE  Filename of the TXT file that contains IDs of buildings which are a warehouse
+  -g GRAPH, --graph GRAPH              Filename of the graph .dot file to be generated based on the Grid
+  -s SVG, --svg SVG                    Filename of the SVG file to be generated based on the .dot graphviz format
 ```

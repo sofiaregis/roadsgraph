@@ -22,8 +22,13 @@ def main():
     )
 
     parser.add_argument(
+        "-w", "--warehouse", type=str,
+        help="Filename of the TXT file that contains IDs of buildings which are a warehouse"
+    )
+
+    parser.add_argument(
         "-g", "--graph", type=str,
-        help="Filename of the graph file to be generated based on the Grid"
+        help="Filename of the graph .dot file to be generated based on the Grid"
     )
 
     parser.add_argument(
@@ -46,6 +51,12 @@ def main():
         grid.load_from_csv(args.csv)
         if args.verbose:
             grid.display()
+
+    if args.warehouse is not None:
+        with open(args.warehouse) as warehousefile:
+            grid.warehouse = list(map(int, warehousefile.readlines()))
+        if args.verbose:
+            print(f"Buildings that are a warehouse: {grid.warehouse}")
 
     if args.image is not None:
         grid.save_grid_as_image(args.verbose, args.image)
